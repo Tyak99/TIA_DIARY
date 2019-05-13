@@ -6,10 +6,12 @@
   "dependencies": {
     "express": "^4.16.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/app.js"
+    "start": "nodemon server/app.js"
   },
   "repository": {
     "type": "git",

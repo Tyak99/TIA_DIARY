@@ -1,0 +1,21 @@
+{
+  "name": "tia_diary",
+  "version": "1.0.0",
+  "description": "A diary app",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tyak99/TIA_DIARY.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tyak99/TIA_DIARY/issues"
+  },
+  "homepage": "https://github.com/Tyak99/TIA_DIARY#readme"
+}

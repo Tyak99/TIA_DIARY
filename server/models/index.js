@@ -4,9 +4,9 @@ import Sequelize from 'sequelize';
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const configFile = '/../config/config.js';
 
-const config = `..dirname/${configFile[env]}`;
+// eslint-disable-next-line import/no-dynamic-require
+const config = require(`${__dirname}/../config/config.js`)[env];
 
 
 const db = {};
@@ -35,4 +35,4 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-export default db;
+module.exports = db;

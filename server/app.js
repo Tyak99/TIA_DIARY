@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 
 */
 
+/*
 
 User.create({
   firstName: 'Software',
@@ -37,7 +38,8 @@ User.create({
   })
   .catch(e => console.log(e));
 
-  
+*/
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log('server has started');

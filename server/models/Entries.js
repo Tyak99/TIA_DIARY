@@ -1,11 +1,25 @@
 module.exports = (sequelize, DataTypes) => {
-  const Entries = sequelize.define('Entries', {
-    title: DataTypes.STRING,
-    description: DataTypes.STRING,
-    userId: DataTypes.INTEGER,
-  }, {});
+  const Entries = sequelize.define(
+    'Entries',
+    {
+      title: DataTypes.STRING,
+      description: DataTypes.STRING,
+      userId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'User',
+          key: 'id',
+          as: 'userId',
+        },
+      },
+    },
+    {},
+  );
   Entries.associate = (models) => {
-    Entries.belongsTo(models.User);
+    Entries.belongsTo(models.User, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE',
+    });
   };
   return Entries;
 };

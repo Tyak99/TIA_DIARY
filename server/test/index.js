@@ -3,31 +3,11 @@ import chaiHttp from 'chai-http';
 import server from '../app';
 import models from '../models';
 
-const { Entries, User } = models;
 chai.use(chaiHttp);
 
 const { expect } = chai;
-// let userToken;
 
 describe('Test All Diary-App Endpoints', () => {
-  before((done) => {
-    User.create({
-      firstName: 'Software',
-      lastName: 'Developer',
-      email: 'softwaredev@gmail.com',
-      password: 'softwaredev',
-    })
-      .then(({ dataValues }) => {
-        Entries.create({
-          title: 'Create a diary application',
-          description: 'Build a diary application with node, express and sequelize',
-          userId: dataValues.id,
-        });
-        done();
-      })
-      .catch(e => console.log(e));
-  });
-
   it('should test the index route', (done) => {
     chai
       .request(server)

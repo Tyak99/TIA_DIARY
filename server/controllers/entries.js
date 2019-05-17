@@ -1,37 +1,37 @@
 import { Entries, User } from '../models';
 
-class entriesController {
+class EntryController {
   static async addEntry(req, res) {
-    const { userId, title, description } = req.body;
+    const { userId, title, description } = req.values;
 
-    try {
-      const result = await User.findByPk(req.body.userId);
-      if (!result) {
-        return res.status(401).json({
-          status: 401,
-          error: 'User not found.',
-        });
-      }
+    User.findByPk(req.body.userId)
+      .then((user) => {
+        if (!user.dataValues) {
+          return res.status(401).json({
+            status: 401,
+            error: 'User not found.',
+          });
+        }
+      })
+      .catch(e => res.status(500).json({
+        status: 401,
+        error: `There was an error verifying this user ${e}`,
+      }));
 
-      const createdEntry = await Entries.create({
-        title,
-        description,
-        id: userId,
-      });
-
-      console.log('entry is ', createdEntry);
-      return res.status(201).json({
+    Entries.create({
+      title,
+      description,
+      userId,
+    })
+      .then(entry => res.status(401).json({
         status: 201,
-        data: [rows[0]],
-      });
-    } catch (e) {
-      return res.status(400).json({
+        data: entry.dataValues,
+      }))
+      .catch(e => res.status(400).json({
         status: 400,
-        error: `There was an error sending your message. ${e}`,
-      });
-    }
+        error: `There was an error saving your entry. ${e}`,
+      }));
   }
 }
-const { addEntry } = entriesController;
 
-export { addEntry };
+export default EntryController;

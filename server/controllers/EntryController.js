@@ -8,15 +8,15 @@ class EntryController {
 
     User.findByPk(req.body.userId)
       .then((user) => {
-        if (!user.dataValues) {
-          return res.status(401).json({
-            status: 401,
+        if (!user) {
+          return res.status(404).json({
+            status: 404,
             error: 'User not found.',
           });
         }
       })
       .catch(e => res.status(500).json({
-        status: 401,
+        status: 500,
         error: `There was an error verifying this user ${e}`,
       }));
 
@@ -25,12 +25,12 @@ class EntryController {
       description,
       userId,
     })
-      .then(entry => res.status(401).json({
+      .then(entry => res.status(201).json({
         status: 201,
         data: entry.dataValues,
       }))
-      .catch(e => res.status(400).json({
-        status: 400,
+      .catch(e => res.status(500).json({
+        status: 500,
         error: `There was an error saving your entry. ${e}`,
       }));
   }

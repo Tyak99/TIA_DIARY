@@ -1,5 +1,3 @@
-import { Entries, User } from '../models';
-
 class Validator {
   static addEntry(req, res, next) {
 

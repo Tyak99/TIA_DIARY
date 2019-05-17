@@ -2,13 +2,15 @@ import express from 'express';
 import dotenv from 'dotenv';
 import userRoutes from './routes/user';
 import entryRoutes from './routes/entries';
+import bodyParser from 'body-parser';
 
 dotenv.config();
-
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/v1/auth', userRoutes);
 app.use('/api/v1/entry', entryRoutes);

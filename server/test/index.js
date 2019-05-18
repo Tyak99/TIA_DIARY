@@ -27,7 +27,6 @@ describe('Test All Diary-App Endpoints', () => {
 
       chai.request(server)
         .post('/api/v1/entries')
-        // .set('authorization', userToken)
         .send(entry)
         .end((err, res) => {
           expect(res.status).to.eql(201);
@@ -46,7 +45,6 @@ describe('Test All Diary-App Endpoints', () => {
 
       chai.request(server)
         .post('/api/v1/entries')
-        // .set('authorization', userToken)
         .send(entry)
         .end((err, res) => {
           expect(res.status).to.eql(400);
@@ -65,7 +63,6 @@ describe('Test All Diary-App Endpoints', () => {
 
       chai.request(server)
         .post('/api/v1/entries')
-        // .set('authorization', userToken)
         .send(entry)
         .end((err, res) => {
           expect(res.status).to.eql(404);
@@ -74,26 +71,5 @@ describe('Test All Diary-App Endpoints', () => {
           done();
         });
     });
-
-    /*
-
-    it('Should return status 401(Unauthorized) when there is no Token Provided', () => {
-      const entry = {
-        title: 'Wonderful day',
-        description: 'I had a very wonderful day, i met the love of my life.',
-        userId: 2,
-      };
-
-      chai.request(server)
-        .post('/api/v1/entries')
-        .send(entry)
-        .end((err, res) => {
-          expect(res.status).to.eql(401);
-          expect(res.body).to.have.a.property('error').which.is.a('string');
-          expect(res.body.error).to.eql('No Authentication Token Provided.');
-          done();
-        });
-
-  */
   });
 });

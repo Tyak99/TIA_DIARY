@@ -1,6 +1,5 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import bodyParser from 'body-parser';
 import userRoutes from './routes/user';
 import entryRoutes from './routes/entries';
 

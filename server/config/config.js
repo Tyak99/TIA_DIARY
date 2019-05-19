@@ -4,11 +4,17 @@ dotenv.config();
 
 module.exports = {
   development: {
-    use_env_variable: 'DATABASE_URL',
+    username: process.env.DEV_DB_USERNAME,
+    password: process.env.DEV_DB_PASSWORD,
+    database: process.env.DEV_DB_NAME,
+    host: process.env.DEV_DB_HOST,
     dialect: 'postgres',
   },
   test: {
-    use_env_variable: 'DATABASETEST_URL',
+    username: process.env.DEV_DB_USERNAME,
+    password: process.env.DEV_DB_PASSWORD,
+    database: process.env.TEST_DB_NAME,
+    host: process.env.DEV_DB_HOST,
     dialect: 'postgres',
   },
   production: {

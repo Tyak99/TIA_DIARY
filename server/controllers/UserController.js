@@ -33,7 +33,7 @@ class UserController {
         const { password, firstName, ...newUser } = user.dataValues;
         const token = Helper.generateToken(user.id, user.email);
         return res.status(201).json({
-          status: 201,
+          status: 'success',
           data: [
             {
               userToken: token,
@@ -43,9 +43,9 @@ class UserController {
         });
       })
       .catch((error) => {
-        return res.status(500).json({
-          status: 500,
-          error: 'Internal Server Error',
+        return res.status(400).json({
+          status: 'failed',
+          error: 'Unable to create user',
         });
       });
     return null;

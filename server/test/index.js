@@ -28,6 +28,18 @@ describe('Index page test', () => {
   });
 });
 
+describe('Test signup route', () => {
+  it('should signup a user', (done) => {
+    chai
+      .request(server)
+      .post('/api/v1/auth/signup')
+      .send(user)
+      .end((err, res) => {
+        expect(res.status).to.eql(201);
+        done();
+      });
+  });
+});
 
 describe('login route test', () => {
   it('should test the login route', (done) => {

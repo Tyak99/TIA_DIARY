@@ -21,33 +21,33 @@ class UserController {
           error: `The email ${req.body.email} already exists`,
         });
       }
-    });
-    const encryptedPassword = Helper.hashPassword(req.body.password);
-    User.create({
-      email: req.body.email.toLowerCase(),
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      password: encryptedPassword,
-    })
-      .then((user) => {
-        const { password, firstName, ...newUser } = user.dataValues;
-        const token = Helper.generateToken(user.id, user.email);
-        return res.status(201).json({
-          status: 'success',
-          data: [
-            {
-              userToken: token,
-              email: req.body.email,
-            },
-          ],
-        });
+      const encryptedPassword = Helper.hashPassword(req.body.password);
+      User.create({
+        email: req.body.email.toLowerCase(),
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        password: encryptedPassword,
       })
+        .then((user) => {
+          const token = Helper.generateToken(user.id, user.email);
+          return res.status(201).json({
+            status: 201,
+            data: [
+              {
+                userToken: token,
+                email: req.body.email,
+              },
+            ],
+          });
+        });
+    })
       .catch((error) => {
         return res.status(400).json({
           status: 'failed',
           error: 'Unable to create user',
         });
       });
+ 
     return null;
   }
 

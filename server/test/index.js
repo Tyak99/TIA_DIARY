@@ -40,39 +40,3 @@ describe('Test signup route', () => {
       });
   });
 });
-
-describe('login route test', () => {
-  it('should test the login route', (done) => {
-    chai
-        .request(server)
-        .post('/api/v1/auth/login')
-        .send(user)
-        .end((err, res) => {
-          const { body } = res
-          
-          expect(body.status).to.eql(200);
-          expect(body.data).to.be.an('object')
-          expect(body.data.id).to.be.a('number')
-
-          done();
-        });
-  });
-});
-
-describe('invalid login credentials', () => {
-  it('should test for invalid login credentials', (done) => {
-    chai
-       .request(server)
-       .post('/api/v1/auth/login')
-       .send(user2)
-       .end((err, res) => {
-         const { body } = res
-
-         expect(body.status).to.eql(401);
-         expect(body.error).to.be.a('string');
-         expect(body.error).to.eql('invalid credentials')
-
-         done()
-       })
-  })
-})
